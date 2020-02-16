@@ -57,8 +57,20 @@ def sample(data,dem):
     data = data.to_crs(crs=dem.crs)
     data = rs.zonal_stats(data, dem.read(1), affine=dem.transform, stats=['majority'], geojson_out=True)
     data = gpd.GeoDataFrame.from_features(data)
-    data["majority2"] = data.apply(fil, axis=1)
+    data["dem"] = data.apply(fil, axis=1)
     return data
+
+
+def scenario(data):
+    list = [0,5,10,15]
+    for i in list:
+        filtered = data["dem"] > i
+        data2 = data[filtered]
+        data2 = g2p(p2g(data2),data2)
+        data2.to_file("betweenness"+str(i))
+        
+
+
 
 
 
