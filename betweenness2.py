@@ -26,8 +26,7 @@ def p2g(data):
             else:
                 n2 = j
                 graph1.add_edge(n1, n2, weight=np.linalg.norm(np.array((n1[0], n1[1])) - np.array((n2[0], n2[1]))),filtre = filtre )
-                "buraya yeni olarak filtre eklendi konuştuğumuz ana yolları bu şekilde immune yapmayı düşünüyordum"
-                "osm datasının içinde ref olarak sütunda geçiyor bu filtrenin kaynağı"
+                
                 n1 = j
 
     return graph1
@@ -47,7 +46,7 @@ def g2p(graph,data):
                               "filtre": filtre[i]}, ignore_index=True)
     return layer
 
-fp = "/Users/graus/PycharmProjects/network_centrality/kadikoy/edges.shp"
+fp = "filepath"
 
 data = read_data(fp)
 
@@ -58,11 +57,10 @@ sonuc = g2p(graph, data)
 breaks = jenkspy.jenks_breaks(sonuc["weight"], nb_class=5)
 
 for count, i in enumerate(breaks[::-1][:-1]):
-    "yukarıdaki liste ters çevrilmiş büyükten küçüğe sıralamak için öyle yaptım "
-    "aşağıdaki iterasyon konuştuğumuz gibi sonları dikkate almayacaktı onu henüz yazmadım değişecek aşağısı"
+    
     filtered = (sonuc["weight"] > breaks[count]) & (sonuc["weight"] < breaks[count+1])
     data2 = sonuc[~filtered]
     data2 = g2p(p2g(data2), sonuc)
-    data2.to_file("testooo" + str(count))
+    data2.to_file("test" + str(count))
 
 
