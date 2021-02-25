@@ -1,4 +1,4 @@
 # network_centrality
 
-![Betweenness](https://en.wikipedia.org/wiki/File:Graph_betweenness.svg)
+![Betweenness](https://upload.wikimedia.org/wikipedia/commons/6/60/Graph_betweenness.svg)
 
